@@ -1,0 +1,64 @@
+<div class="booktop">
+<h1>スレッド詳細</h1>
+</div>
+<div class="post3">
+  <p>タイトル：<%= @post.body %></p>
+  <p>ジャンル：<%= @post.genre %></p>
+  <p>投稿日：<%= @post.created_at.in_time_zone('Tokyo') %></p>
+  <p><%= image_tag @post.image_url, size: "250x200" if @post.image?%></p>
+    <% if user_signed_in? %>
+      <% if current_user.already_post_liked?(@post) %>
+        <%= button_to post_post_like_path(@post), method: :delete do %>
+          <i class="fas fa-heart my-red"></i><%= @post.post_likes.count %>
+        <% end %>
+      <% else %>
+        <%= button_to post_post_likes_path(@post), method: :post do %>
+          <i class="fas fa-heart my-red"></i><%= @post.post_likes.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <i class="fas fa-heart my-red"></i><%= @post.post_likes.count %>
+    <% end %>
+</div>
+
+<h2>いいねしたユーザー</h2>
+<% @post.post_liked_users.each do |user| %>
+  <li><%= user.name %></li>
+<% end %>
+
+<% if user_signed_in? && current_user.id == @post.user_id %>
+<div class="parent">
+  <%= link_to "編集する", edit_post_path(@post.id), class:"button4" %>
+</div>
+<% end %>
+
+<div class="post_comment-wrapper">
+  <h2>コメント一覧</h2>
+  <% @post_comments.each do |c| %>
+    <div class="commentblock">
+      <%= c.user.name unless c.user.blank? %><%= c.created_at.in_time_zone('Tokyo') %>
+      <br>
+      <%= c.content %>
+      <br>
+      <%= image_tag c.image_url, size: "250x200" if c.image? %>
+    </div>
+      <br>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= form_with(model: [@post, @post_comment], local: true) do |f| %>
+      <%= f.text_area :content %>
+        <div class="field">
+          <%= f.label :image %>
+          <%= f.file_field :image %>
+        </div>
+      <%= button_tag type: "submit" do %>
+        <i class="far fa-comments"></i> コメントする
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="parent">
+  <%= link_to "スレッド一覧に戻る", posts_path ,class:"button5" %>
+</div>

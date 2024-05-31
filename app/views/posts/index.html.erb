@@ -1,0 +1,82 @@
+<div class="booktop">
+<h1>コミュニティページ</h1>
+</div>
+
+<%= button_to 'ログアウト', destroy_user_session_path, method: :delete , class:"login"%>
+<% if user_signed_in? %>
+  <%= link_to "マイページへ", user_path(current_user.id) , class:"button2"%>
+<% end %>
+<%= link_to "新規投稿ページへ", new_post_path ,class:"button2"%>
+
+<div class="space">
+<h3>投稿を検索</h3>
+ <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
+   <%= text_field_tag :search %>
+   <%= submit_tag '検索する'  %>
+<% end %>
+</div>
+
+
+
+
+<div class="posts-container">
+  <% @posts.each do |t| %>
+    <div class="post">
+      <%= link_to t.user.name, user_path(t.user.id) %>
+      <%= t.body %><br>
+      <%= image_tag t.image_url, size: "250x200" if t.image? %><br>
+      <%= t.created_at.in_time_zone('Tokyo') %>
+<% if user_signed_in? %>
+      <% if current_user.already_post_liked?(t) %>
+          <%= button_to post_post_like_path(id: t.id, post_id: t.id), method: :delete do %>
+              <i class="fas fa-heart my-red"></i><%= t.post_likes.count %>
+          <% end %>
+      <% else %>
+          <%= button_to post_post_likes_path(id: t.id, post_id: t.id), method: :post do %>
+              <i class="far fa-heart my-red"></i><%= t.post_likes.count %>
+          <% end %>
+      <% end %>
+<% else %>
+      <i class="far fa-heart my-red"></i><%= t.post_likes.count %>
+<% end %>
+
+      <%= link_to "詳細へ", post_path(t.id) %>
+      <% if user_signed_in? && current_user.id == t.user_id %>
+        <%= link_to "編集する", edit_post_path(t.id) %>
+        <%= button_to "削除する", post_path(t.id), method: :delete , class:"delete2"%>
+      <% end %> 
+    </div>
+  <% end %>
+</div>
+
+<div class="post2">
+  <%= page_entries_info @posts %>
+  <%= paginate @posts %>
+</div>
+
+
+<div class="postrank-container">
+<h3>人気のスレッド</h3>
+  <% @rank_posts.each do |t| %>
+    <div class="post">
+      <%= link_to t.user.name, user_path(t.user.id) %>
+      <%= t.body %><br>
+      <%= t.created_at.in_time_zone('Tokyo') %>
+<% if user_signed_in? %>
+      <% if current_user.already_post_liked?(t) %>
+          <%= button_to post_post_like_path(id: t.id, post_id: t.id), method: :delete do %>
+              <i class="fas fa-heart"></i><%= t.post_likes.count %>
+          <% end %>
+      <% else %>
+          <%= button_to post_post_likes_path(id: t.id, post_id: t.id), method: :post do %>
+              <i class="far fa-heart"></i><%= t.post_likes.count %>
+          <% end %>
+      <% end %>
+<% else %>
+      <i class="far fa-heart"></i><%= t.post_likes.count %>
+<% end %>
+
+      <%= link_to "詳細へ", post_path(t.id) %>
+    </div>
+  <% end %>
+</div>

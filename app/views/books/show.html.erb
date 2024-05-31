@@ -1,0 +1,82 @@
+<div class="booktop">
+<h1>書評詳細</h1>
+</div>
+<div class="book2">
+  <p><%= image_tag @book.image_url, size: "180x250" if @book.image?%></p>
+  <p>タイトル：<%= @book.title %></p>
+  <p>出版社：<%= @book.publisher %></p>
+  <p>対象：<%= @book.grade %></p>
+  <p>ジャンル：<%= @book.genre %></p>
+  <p>説明：<%= @book.about %></p>
+  <p>出版日：<%= @book.date_publication %></p>
+  <p>投稿日：<%= @book.created_at.in_time_zone('Tokyo') %></p>
+  
+  
+  <% if user_signed_in? %>
+      <% if current_user.already_liked?(@book) %>
+        <%= button_to book_like_path(@book), method: :delete do %>
+          <div class="bigger">
+            <i class="fas fa-heart"></i><%= @book.likes.count %>
+          </div>
+        <% end %>
+      <% else %>
+        <%= button_to book_likes_path(@book), method: :post do %>
+          <div class="bigger">
+            <i class="far fa-heart"></i><%= @book.likes.count %>
+          </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <div class="bigger">
+        <i class="far fa-heart"></i><%= @book.likes.count %>
+      </div>
+    <% end %>
+</div>
+
+<% if user_signed_in? && current_user.id == @book.user_id %>
+<div class="parent">
+  <%= link_to "編集する", edit_book_path(@book.id), class:"button4" %>
+</div>
+<% end %>
+
+<h3>いいねしたユーザー</h3>
+<%#= @user.liked_books.each do |t| %>
+<%#= link_to t.user.name, user_path(t.user.id) %>
+<% @book.liked_users.each do |user| %>
+  <li><%= user.name %></li>
+<% end %>
+
+
+
+<div class="book_comment-wrapper">
+  <h2>コメント一覧</h2>
+
+      <% @book_comments.each do |c| %>
+        <div class="commentblock">
+          <%= c.user.name unless c.user.blank? %><%= c.created_at.in_time_zone('Tokyo') %>
+          <br>
+          <%= c.content %>
+          <br>
+          <%= image_tag c.image_url, size: "250x200" if c.image? %>
+        </div>
+          <br>
+
+<% end %>
+
+
+  <% if user_signed_in? %>
+    <%= form_with(model: [@book, @book_comment], local: true) do |f| %>
+      <%= f.text_area :content %>
+        <div class="field">
+          <%= f.label :image %>
+          <%= f.file_field :image %>
+        </div>
+      <%= button_tag type: "submit" do %>
+        <i class="far fa-comments"></i> コメントする
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+<div class="parent">
+  <%= link_to "書評一覧に戻る", books_path ,class:"button5"%>
+</div>

@@ -1,0 +1,114 @@
+// Place all the styles related to the hello controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+
+.top {
+    display: flex;
+    justify-content: flex-end;
+    padding: 4px 19px;
+    margin: 0em 0;
+    color: #23239e;
+    background: #ffffff;
+    border-top: solid 3px #200534;
+    border-bottom: solid 3px #200534;
+}
+
+.login {
+  font-weight: bold;/*太字に*/
+  text-decoration: none;/*下線消す*/
+  background: rgb(109, 111, 112);/*背景を水色に*/
+  color:white;/*文字を白に*/
+  padding:5px 10px;/*内側の余白*/
+  border-radius: 20px;/*角を丸くする*/
+  font-family: 'Avenir','Arial';/*フォントをいい感じに*/
+}
+/*以下カーソルを当てたとき*/
+.login:hover {
+  background: silver;/*背景色をシルバーに*/
+  text-decoration: none;/*下線を消す*/
+}
+
+.first-block {
+    position: relative;
+    height: 500px;
+    background-color: #ddd;
+  }
+
+.first-block h1 {
+    padding-top: 5px;
+    margin-left: 90px;
+}
+
+.under {
+    border-bottom: double 6px #81a1b47f;
+}
+
+.hello-under {
+    height: 400px;
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.image6 {
+    margin: 20px;
+    height: 90%;
+}
+
+.right-block {
+    padding: 0.5em 1em;
+    margin: 20px;
+    color: #ffffff;
+    background: #514f4f;/*背景色*/
+    border-top: solid 6px #000000;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+}
+
+.hello-under h3{
+    font-size: 30px
+}
+  
+  .second-block {
+    height: 500px;
+    background-color: #f0f0f0;
+  }
+
+    .second-block h1 {
+    padding-top: 5px;
+    margin-left: 90px;
+}
+
+.box17{
+  margin:2em 0;
+  position: relative;
+  padding: 0.5em 1.5em;
+  border-top: solid 2px black;
+  border-bottom: solid 2px black;
+}
+.box17:before, .box17:after{
+  content: '';
+  position: absolute;
+  top: -10px;
+  width: 2px;
+  height: -webkit-calc(100% + 20px);
+  height: calc(100% + 20px);
+  background-color: black;
+}
+.box17:before {left: 10px;}
+.box17:after {right: 10px;}
+.box17 p {
+  margin: 0; 
+  padding: 0;
+}
+  
+  .third-block {
+    height: 500px;
+    background-color: #f05f40;
+  }
+  
+  footer{
+    height: 50px;
+    background-color: #000;
+  }

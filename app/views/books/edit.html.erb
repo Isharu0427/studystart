@@ -1,0 +1,34 @@
+<div class="booktop">
+<h1>書評 編集</h1>
+<div class="bookpost-container">
+  <p class="title">編集フォーム</p>
+    <%= form_for @book do |f| %>
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title, :size => 140 %><br>
+
+      <%= f.label :publisher %>
+      <%= f.text_field :publisher, :size => 140 %><br>
+
+      <%= f.label :grade %>
+      <%= f.text_field :grade, :size => 140 %><br>
+
+      <%= f.label :genre %>
+      <%= f.text_field :genre, :size => 140 %><br>
+
+      <%= f.label :about %>
+      <%= f.text_field :about, :size => 140 %><br>
+
+      <%= f.label :date_publication %>
+      <%= f.text_field :date_publication, :size => 140 %><br>
+    </div>
+
+    <div class="field">
+      <%= f.label :画像 %>
+      <%= f.file_field :image %>
+    </div>
+
+      <%= f.submit "編集する" %>
+    <% end %>
+    <%= link_to "書評一覧に戻る", books_path %>
+</div>

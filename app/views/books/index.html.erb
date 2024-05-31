@@ -1,0 +1,67 @@
+<div class="booktop">
+<h1>書評一覧</h1>
+</div>
+
+<%= button_to 'ログアウト', destroy_user_session_path, method: :delete , class:"login"%>
+<% if user_signed_in? %>
+  <%= link_to "マイページへ", user_path(current_user.id) , class:"button2"%>
+<% end %>
+<%= link_to "新規投稿へ", new_book_path , class:"button2"%>
+
+
+<div class="space">
+<h3>投稿を検索</h3>
+ <%= form_tag({controller:"books",action:"index"}, method: :get) do %>
+   <%= text_field_tag :search %>
+   <%= submit_tag '検索する'  %>
+<% end %>
+</div>
+
+
+
+
+<div class="books-container">
+  <% @books.each do |t| %>
+    <div class="book">
+      <div class="main-box">
+        <div class="left-container"><%= link_to t.user.name, user_path(t.user.id) %>
+        <%= t.title %><br>
+        <%= image_tag t.image_url, size: "180x250" if t.image? %><br>
+        </div>
+        <p class="time">投稿日：<%= t.created_at.in_time_zone('Tokyo') %></p>
+
+<% if user_signed_in? %>
+      <% if current_user.already_liked?(t) %>
+          <%= button_to book_like_path(id: t.id, book_id: t.id), method: :delete do %>
+            <div class="bigger">
+              <i class="fas fa-heart"></i><%= t.likes.count %>
+            </div>
+          <% end %>
+      <% else %>
+          <%= button_to book_likes_path(id: t.id, book_id: t.id), method: :post do %>
+            <div class="bigger">
+              <i class="far fa-heart"></i><%= t.likes.count %>
+            </div>
+          <% end %>
+      <% end %>
+  <% else %>
+    <div class="bigger">
+      <i class="far fa-heart"></i><%= t.likes.count %>
+    </div>
+  <% end %>
+
+      <div class="right-container">
+        <%= link_to "詳細へ", book_path(t.id) %>
+        <% if user_signed_in? && current_user.id == t.user_id %>
+          <%= link_to "編集する", edit_book_path(t.id) %>
+          <%= button_to "削除する", book_path(t.id), method: :delete ,class:"delete2"%>
+        <% end %>
+      </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="post2">
+  <%= page_entries_info @books %>
+  <%= paginate @books %>
+</div>

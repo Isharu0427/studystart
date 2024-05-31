@@ -1,0 +1,121 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.mypage1{
+    border-bottom: solid 4px rgb(0, 0, 0);
+    height: 45px;
+}
+
+.box20 {
+    position: relative;
+    padding: 0.25em 1em;
+    margin: 2em 0;
+    top: 0;
+    background: #efefef;
+}
+.box20:before, .box20:after{ 
+    position: absolute;
+    top: 0;
+    content:'';
+    width: 10px;
+    height: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+.box20:before{
+    border-left: dotted 2px #15adc1;
+    border-top: dotted 2px #15adc1;
+    border-bottom: dotted 2px #15adc1;
+    left: 0;
+}
+.box20:after{
+    border-top: dotted 2px #15adc1;
+    border-right: dotted 2px #15adc1;
+    border-bottom: dotted 2px #15adc1;
+    right: 0;
+}
+.box20 p {
+    margin: 0; 
+    padding: 0;
+}
+
+
+.box22{
+    padding: 0.5em 1em;
+    margin: 1em 0;
+    background: #f4f4f4;
+    border-left: solid 6px #5bb7ae;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.33);
+}
+.box22 p {
+    margin: 0; 
+    padding: 0;
+}
+
+.button{
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: #b9b9b9;
+    background: #ececec4a;
+    border-radius: 0 15px 15px 0;
+    transition: .4s;
+}
+
+.button:hover {
+    background: #8b8b8bfe;
+}
+
+.button3{
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #3d3d3e;/*ボタン色*/
+  color: #FFF;
+  border-bottom: solid 4px #161718;
+  border-radius: 3px;
+}
+
+.button3:active{
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+}
+
+.userbox{
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #5d627b;
+    background: white;
+    border-left: solid 5px #5d627b;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+
+}
+
+.userbottom{
+    text-align: center
+}
+
+.delete {
+    padding: 0.5em 1em;
+    margin: 1em 0;
+    background: #f4f4f4;
+    border-left: solid 6px #b75b5b;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.33);
+}
+
+.delete2 {
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFF;
+  background: #fd3535;/*色*/
+  border-radius: 4px;/*角の丸み*/
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+  border: solid 2px #d20000;/*線色*/
+}

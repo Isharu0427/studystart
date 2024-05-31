@@ -1,0 +1,15 @@
+<div class="booktop">
+<h1>スレッド 編集</h1>
+<div class="bookpost-container">
+  <p class="title">編集フォーム</p>
+    <%= form_for @post do |f| %>
+      <%= f.label :body %>
+      <%= f.text_field :body, :size => 140 %><br>
+
+      <%= f.label :genre %>
+      <%= f.text_field :genre, :size => 140 %><br>
+
+      <%= f.submit "編集する" %>
+    <% end %>
+    <%= link_to "コミュニティページに戻る", posts_path %>
+</div>

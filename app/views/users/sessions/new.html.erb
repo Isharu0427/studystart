@@ -1,0 +1,35 @@
+<div class="booktop">
+<h1>ログイン</h1>
+</div>
+
+<div class="userbox">
+    <p>※登録したメールアドレスとパスワードを入力してください。</p>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <h2>メールアドレス </h2><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <h2>パスワード </h2><br />
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <h2>入力内容を記憶する</h2>
+        </div>
+      <% end %>
+
+</div>
+
+<div class="userbottom">
+  <div class="actions">
+    <%= f.submit "ログイン" , class:"button3"%>
+  </div>
+
+<%= link_to "新規登録画面へ", new_user_registration_path , class:"login"%>
+</div>
+<% end %>

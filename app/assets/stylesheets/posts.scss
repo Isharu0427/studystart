@@ -1,0 +1,60 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.posts-container {
+
+    margin: 0px auto;
+}
+
+.post {
+    border-top: solid #575858;
+    margin-top: 10px;
+    padding-top: 20px;
+}
+
+.post2 {
+    border-top: solid #575858;
+    margin-top: 10px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.post3 {
+    margin:2em 1em;
+    position: relative;
+    padding: 0.25em 1em;
+    border: solid 2px #242424;
+    border-radius: 3px 0 3px 0;
+}
+
+.post3:before,.post3:after{
+    content: '';
+    position: absolute;
+    width:10px;
+    height: 10px;
+    border: solid 2px #242424;
+    border-radius: 50%;
+}
+.post3:after {
+    top:-12px;
+    left:-12px;
+}
+.post3:before {
+    bottom:-12px;
+    right:-12px;
+}
+.post3 p {
+    margin: 0; 
+    padding: 0;
+}
+
+.postrank-container h3{
+    border-left :solid 5px orange;
+
+  /*余白をつけておきます*/
+  padding: 10px;
+}
+
+.space {
+    margin-top: 10px;
+}
